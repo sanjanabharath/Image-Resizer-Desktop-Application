@@ -13,7 +13,8 @@ function loadImage(e){
     return;
   }
 
-  console.log('success');
+  form.style.display = "block"
+  filename.innerHTML = file.name 
 }
 
 function isFileImage(file){
