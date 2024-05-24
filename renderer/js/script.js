@@ -13,8 +13,16 @@ function loadImage(e){
     return;
   }
 
+  const image = new Image();
+  image.src = URL.createObjectURL(file);
+  image.onload = function (){
+    widthInput.value = this.width;
+    heightInput.value = this.height;
+  }
+
   form.style.display = "block"
-  filename.innerHTML = file.name 
+  filename.innerText = file.name
+  outputPath.innerText = path.join(os.homedir(), 'imageresizer') 
 }
 
 function isFileImage(file){
