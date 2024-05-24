@@ -5,8 +5,10 @@ const fs = require("fs");
 const resizeImg = require("resize-img");
 const isMac = process.platform === "darwin";
 
+let mainWindow;
+
 function createMainWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     title: "Image Resizer",
     width: 500,
     height: 600,
@@ -35,6 +37,8 @@ app.whenReady().then(() => {
 
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
+
+  mainWindow.on("closed", () => (mainWindow = null));
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
